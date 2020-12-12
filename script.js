@@ -1,57 +1,75 @@
-// object with questions
 
-   var answers = [["li", "lo", "div", "section"], 
+
+// Array within Array from which the buttons populate their answers.
+var answers = [["li", "ul", "div", "section"], 
     ["main", "button", "body", "p"],
     ["map", "Every", "splits","gush"],
     ["black bear", "beats", "battlestar galactica", "mose"],
     ["question mark", "hashtag", "exclamation mark", "equal sign"],
-    ["in div", "before html", "in script.js", "after bootstrap"],
+    ["in div", "before html", "in script.js", "after bootstrap link"],
     ["html", "css", "java script", "python"],
     ["percent", "dolorsign", "hashtag", "period"],]
-    
 
+var correctAnswers = ["ul", "p", "splits", "black bear", "equal sign", "after bootstrap link", "java script", "hashtag",]
+    
+// linking buttons and question to html.
     var displayQuestion = document.querySelector("#question")
     var button1 = document.querySelector(".button1")
     var button2 = document.querySelector(".button2")
     var button3 = document.querySelector(".button3")
     var button4 = document.querySelector(".button4")
     
+//Array of questions.
+    var questions = ["What is the proper tag for an unorganized list in html?", "What is the proper tag to use for text?","What is a method that splits an array into a string","Question, what kind of bear is best?","What symbole gives a variable a value?","When using bootstrap, where should you link your css file?","What is a cool language?","What symbole links an ID to a css page? "]
+// Indexposition for questions and answers to iterate through.
+    var questionIndex = 0
+    var answersIndex = 0
+    var correctIndex = 0
+// Event listener attached to html buttons.
+var evenLis = document.querySelector("#buttons")
 
-    var questions = ["What is the proper tag for a unorganized list in html?", "What is the proper tag to use for text?","What is a method that splits an array into a string","Question, what kind of bear is best?","What symbole gives a variable a value?","When using bootstrap, where should you link your css file?","When using bootstrap, where should you link your css file?","What is a cool language?","What symbole links an ID to a css page? "]
+    
 
+evenLis.addEventListener("click", function(event){
+    if (event.target.matches("button")){
+    displayQuestion.textContent = questions[questionIndex] 
+    questionIndex ++
+    var arr = answers[answersIndex] 
+    answersIndex ++
+    button1.textContent = arr[0]
+    button2.textContent = arr[1]
+    button3.textContent = arr[2]
+    button4.textContent = arr[3]
 
-    var evenLis = document.querySelector(".listener")
-    evenLis.addEventListener("click", function(){
+    
+    for (var i = 0; i < correctAnswers.length; i++){
+          current = correctAnswers[correctIndex]
+         correctIndex ++
+         
+    if (event.target.textContent === current){
+    
+    
+    console.log("yay")
+
+    }
+    
+    }
         
-        // Changes the question when you change the number
-        displayQuestion.textContent = questions[0] 
-        var main = questions[0]
-        main ++
-        questions[0] ++
-        //Changes the answers when you change the number
-        var arr = answers[0] 
-        button1.textContent = arr[0]
-        button2.textContent = arr[1]
-        button3.textContent = arr[2]
-        button4.textContent = arr[3]
-    })
     
+    
+    
+    }
 
     
 
-   
+})
 
 
+//formulating idea
 
-
-//TODO: need to link them somehow. while or if?
-
-
-//Changes the answers when you change the number
+        
     
 
-
-    
        
 
     
@@ -77,8 +95,5 @@ function timer (){
 
 
 
-//console.log(fish)
-
-//
 
     
