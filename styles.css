@@ -1,0 +1,24 @@
+#main {
+    background-color: aqua;
+    height: 40vw;
+    width: 40vw;
+    
+    
+    
+    
+    
+}
+#question{
+    background-color: orange;
+    height: 30%;
+}
+#list{
+    background-color: olivedrab;
+}
+.right{
+    
+}
+button {
+    width:  80%;
+    background-color: orchid;
+}
