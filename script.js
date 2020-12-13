@@ -26,12 +26,28 @@ var correctAnswers = ["ul", "p", "splits", "black bear", "equal sign", "after bo
     var questionIndex = 0
     var answersIndex = 0
     var correctIndex = 0
+
+    ///text that is displayed on button is text in the past. click in the futer.
+    
     
 // Event listener attached to html buttons.
-var evenLis = document.querySelector("#buttons")
+var startLis = document.querySelector(".start")
+startLis.addEventListener("click", function(){
+    var time = document.querySelector(".time")
+    var seconds = 90
+
+    var countDown = setInterval(function(){
+    time.textContent = seconds
+    seconds --
+    
+    if (seconds <= -1){
+       clearInterval(countDown)}
+    }, 1000)
 
     
-
+//Events and buttons below.
+//////////////////////////////////////////
+var evenLis = document.querySelector("#buttons")
 evenLis.addEventListener("click", function(event){
     if (event.target.matches("button")){
         
@@ -43,36 +59,35 @@ evenLis.addEventListener("click", function(event){
     button2.textContent = arr[1]
     button3.textContent = arr[2]
     button4.textContent = arr[3]
+    console.log(button1.textContent)
+    //////////////////////////////
+
+    ///////////////////////////
     if (questionIndex === 8 || answersIndex === 8){
-        
+        clearInterval(countDown)
+
     }
-////////////////////////////////////////////////////////////////
-
-      
-    
-/////////////////////////////////////////////////////////////////    
-
-
-    current = correctAnswers[correctIndex]
+    var current = correctAnswers[correctIndex]
     correctIndex ++
-    console.log(current)
+    //console.log(current)
+    console.log (event.target.textContent)
     if (event.target.textContent !== current){
-    console.log("miss");
+    console.log("miss"); seconds = seconds - 10;
+
     
 
     }
     }
 })
 
-
-
+})
+////////////////////////////////////////////////////////////////
+   
+ //TODO: link timer to wrong answers
+ //TODO: align indexes properly
     
-
-        
     
-
-    
-
+/////////////////////////////////////////////////////////////////    
 
 //mayby wrap eventlistener in timer
 
@@ -86,20 +101,22 @@ function clear(){
     
 
 
+//var time = document.querySelector(".time")
+//var seconds = 90
 
-
-
-// base function for timer
-//function timer (){
-   //var countDown = setInterval(function(){
+    //var countDown = setInterval(function(){
     //time.textContent = seconds
     //seconds --
     //if (event.target.textContent !== current)
+    //clearInterval(countDown); seconds - 10;
+    //var countReset = setInterval(function(){
+     //   seconds --
+    
+    //})
     //if (seconds <= -1){
-     //   clearInterval(countDown)
-    //}
-    ////}, 1000)
-//}
+    //   clearInterval(countDown)}
+    //}, 1000)
+    
 
 
 
