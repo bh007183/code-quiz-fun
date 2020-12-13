@@ -1,4 +1,6 @@
 // Array within Array from which the buttons populate their answers.
+
+
 var answers = [
     ["li", "ul", "div", "section"], 
     ["main", "button", "body", "p"],
@@ -65,6 +67,7 @@ evenLis.addEventListener("click", function(event){
     /////IF COMPLETED SCORE WITH SUBMIT BAR//////////////////////////
     if (questionIndex >= 8 || seconds <= 0){
         clearInterval(countDown); 
+        
         var score = document.createElement("p");
         score.textContent = "Game Over! Your Score: " + seconds;
         document.body.querySelector("#here").appendChild(score)
@@ -80,9 +83,24 @@ evenLis.addEventListener("click", function(event){
 //////////SCORE AND INITIALS SUBMITION TO LOCAL STORAGE//////////////
         
         submitB.addEventListener("click", function(){
-            localStorage.setItem(initials.value, seconds)
+            localStorage.setItem("Seconds", seconds.toString())
+            localStorage.setItem("Initials", initials.value)
             initials.value = ""
+            removeChildren("#here", score)
+            removeChildren("#here", initials)
+            removeChildren("#here", submitB)
+            var highScore = document.createElement("h2")
+            highScore.textContent = "High Scores:"
+            document.body.querySelector("#here").appendChild(highScore)
+            var person = localStorage.getItem("Initials")
+            var number = localStorage.getItem("Seconds")
+            var scoreList = document.createElement("li")
+            scoreList.textContent = person +"_______" +number
+            document.body.querySelector("#here").appendChild(scoreList)
+            
 
+            
+            
         })
 
 
@@ -105,42 +123,27 @@ evenLis.addEventListener("click", function(event){
 })
 
 })
+
+
+
+
 ////////////////////////////////////////////////////////////////
-   
- //TODO: link timer to wrong answers
- //TODO: align indexes properly
+   function removeChildren(selector, child){
+    document.body.querySelector(selector).removeChild(child)
+    }
+    
+
     
     
 /////////////////////////////////////////////////////////////////    
 
-//mayby wrap eventlistener in timer
-
-function clear(){
-    button1.textContent = "";  button2.textContent = ""; button3.textContent = ""; button4.textContent = ""; 
-    
-}
 
        
 
     
 
 
-//var time = document.querySelector(".time")
-//var seconds = 90
 
-    //var countDown = setInterval(function(){
-    //time.textContent = seconds
-    //seconds --
-    //if (event.target.textContent !== current)
-    //clearInterval(countDown); seconds - 10;
-    //var countReset = setInterval(function(){
-     //   seconds --
-    
-    //})
-    //if (seconds <= -1){
-    //   clearInterval(countDown)}
-    //}, 1000)
-    
 
 
 
