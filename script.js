@@ -43,8 +43,9 @@ evenLis.addEventListener("click", function(event){
     button2.textContent = arr[1]
     button3.textContent = arr[2]
     button4.textContent = arr[3]
-    if (questionIndex === 8)
-    stop
+    if (questionIndex === 8 || answersIndex === 8){
+        
+    }
 ////////////////////////////////////////////////////////////////
 
       
@@ -57,6 +58,7 @@ evenLis.addEventListener("click", function(event){
     console.log(current)
     if (event.target.textContent !== current){
     console.log("miss");
+    
 
     }
     }
@@ -65,17 +67,19 @@ evenLis.addEventListener("click", function(event){
 
 
     
-    
+
         
     
-    
+
     
 
 
 //mayby wrap eventlistener in timer
 
-
-
+function clear(){
+    button1.textContent = "";  button2.textContent = ""; button3.textContent = ""; button4.textContent = ""; 
+    
+}
 
        
 
