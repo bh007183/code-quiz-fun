@@ -62,9 +62,32 @@ evenLis.addEventListener("click", function(event){
     console.log(button1.textContent)
     //////////////////////////////
 
-    ///////////////////////////
-    if (questionIndex === 8 || answersIndex === 8){
-        clearInterval(countDown)
+    /////IF COMPLETED SCORE WITH SUBMIT BAR//////////////////////////
+    if (questionIndex >= 8 || seconds <= 0){
+        clearInterval(countDown); 
+        var score = document.createElement("p");
+        score.textContent = "Game Over! Your Score: " + seconds;
+        document.body.querySelector("#here").appendChild(score)
+        var initials = document.createElement("input")
+        initials.setAttribute("type", "text")
+        initials.setAttribute("placeHolder", "Enter Initials")
+        document.body.querySelector("#here").appendChild(initials)
+        var submitB = document.createElement("button")
+        submitB.textContent="Submit"
+        submitB.setAttribute("style", "width : 20%")
+        document.body.querySelector("#here").appendChild(submitB)
+        
+//////////SCORE AND INITIALS SUBMITION TO LOCAL STORAGE//////////////
+        
+        submitB.addEventListener("click", function(){
+            localStorage.setItem(initials.value, seconds)
+            initials.value = ""
+
+        })
+
+
+
+        
 
     }
     var current = correctAnswers[correctIndex]
@@ -73,6 +96,7 @@ evenLis.addEventListener("click", function(event){
     console.log (event.target.textContent)
     if (event.target.textContent !== current){
     console.log("miss"); seconds = seconds - 10;
+
 
     
 
