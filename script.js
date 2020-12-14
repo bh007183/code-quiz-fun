@@ -1,5 +1,14 @@
 ////////////////////////Function that starts app/////////////////////////////
-scattergun()
+
+function removeChildren(selector, child){
+    document.body.querySelector(selector).removeChild(child)
+    }
+    
+        
+        
+ main()  
+   
+function main(){    
 // Array within Array from which the buttons populate their answers.
 var answers = [
     ["li", "ul", "div", "section"], 
@@ -9,8 +18,8 @@ var answers = [
     ["question mark", "hashtag", "exclamation mark", "equal sign"],
     ["in div", "before html", "in script.js", "after bootstrap link"],
     ["html", "css", "java script", "python"],
-    ["percent", "dolorsign", "hashtag", "period"],]
-    function scattergun(){
+    ["percent", "dolorsign", "hashtag", "period"],[1,1,1,1]]
+    
 //////////////////////////////////////////////////////////////////////////
 //Array of correct Answers to match against answer button Eventlistener.textcontent.
 var correctAnswers = ["ul", "p", "splits", "black bear", "equal sign", "after bootstrap link", "java script", "hashtag",]
@@ -30,7 +39,7 @@ var correctAnswers = ["ul", "p", "splits", "black bear", "equal sign", "after bo
     
 
     
-     
+
 //// Event listener attached to start button. Starts clock and displays question w/ answeres for first round.
 var startLis = document.querySelector(".start")
 startLis.addEventListener("click", function(){
@@ -53,7 +62,7 @@ startLis.addEventListener("click", function(){
        clearInterval(countDown)}
     }, 1000)
     
-
+    answersIndex = 1
     ///EVENT LISTENER AND EVENT LISTENER TARGET.
     var evenLis = document.querySelector("#buttons")
     evenLis.addEventListener("click", function(event){
@@ -66,24 +75,23 @@ startLis.addEventListener("click", function(){
         var arr = answers[answersIndex]
         answersIndex ++;
         displayQuestion.textContent = questions[questionIndex]  
-        
+        if (correctAnswers.indexOf(event.target.textContent) === -1){
+            console.log("miss"); seconds = seconds - 10;
+        }
+              
         button0.textContent = arr[0]
         button1.textContent = arr[1]
         button2.textContent = arr[2]
         button3.textContent = arr[3]
-        //TODO: move /// IF TARGET DOES NOT MATCH ANY CORRECT ANSWERS THEN - 10 SECONDS
-        console.log (event.target.textContent)
-        if (correctAnswers.indexOf(event.target.textContent) === -1){
-            console.log("miss"); seconds = seconds - 10;
-            }
         
+
           
     
     
 
     /////IF COMPLETED SCORE WITH SUBMIT BAR//////////////////////////
     if (questionIndex >= 8 || seconds <= 0){
-        clearInterval(countDown); 
+        clearInterval(countDown);
         var score = document.createElement("p");
         score.textContent = "Game Over! Your Score: " + seconds;
         document.body.querySelector("#here").appendChild(score)
@@ -95,7 +103,10 @@ startLis.addEventListener("click", function(){
         submitB.textContent="Submit"
         submitB.setAttribute("style", "width : 20%")
         document.body.querySelector("#here").appendChild(submitB)
-        
+        ////////
+        evenLis.setAttribute("style", "display: none")
+        time.setAttribute("style", "display: none")
+    
 //////////SCORE AND INITIALS SUBMITION TO LOCAL STORAGE//////////////
         
         submitB.addEventListener("click", function(){
@@ -106,6 +117,7 @@ startLis.addEventListener("click", function(){
             removeChildren("#here", score)
             removeChildren("#here", initials)
             removeChildren("#here", submitB)
+            
             var highScore = document.createElement("h2")
             highScore.textContent = "High Scores:"
             document.body.querySelector("#here").appendChild(highScore)
@@ -120,52 +132,21 @@ startLis.addEventListener("click", function(){
             resetB.textContent = "Reset"
             resetB.setAttribute("style", "margin-left: 12%")
             document.body.querySelector("#reset").appendChild(resetB)
-            
-            resetB.addEventListener("click", function(){
-                scattergun()
-                console.log("it wors")
-            })
-            
-            
-            
-
-            
-            
+    
+            resetB.addEventListener("click", function(){console.log(main())  })
+                
         })
-        
-
-
-
-        
-
-    }
     
+    }
     
     }
 })
 
 })
-
-
-
-
-////////////////////////////////////////////////////////////////
-   function removeChildren(selector, child){
-    document.body.querySelector(selector).removeChild(child)
-    }
-    
-    
-
-    }
-
-    
-    
-/////////////////////////////////////////////////////////////////    
-
+}    
 
        
 
-    
 
 
 
