@@ -1,11 +1,6 @@
-// Array within Array from which the buttons populate their answers.
-
-
-
-
-
+////////////////////////Function that starts app/////////////////////////////
 scattergun()
-
+// Array within Array from which the buttons populate their answers.
 var answers = [
     ["li", "ul", "div", "section"], 
     ["main", "button", "body", "p"],
@@ -17,7 +12,7 @@ var answers = [
     ["percent", "dolorsign", "hashtag", "period"],]
     function scattergun(){
 //////////////////////////////////////////////////////////////////////////
-//Array of correct Answers to match against Eventlistener
+//Array of correct Answers to match against answer button Eventlistener.textcontent.
 var correctAnswers = ["ul", "p", "splits", "black bear", "equal sign", "after bootstrap link", "java script", "hashtag",]
  ////////////////////////////////////////////////////////////////////////   
 // Linking buttons and question to html.
@@ -27,59 +22,64 @@ var correctAnswers = ["ul", "p", "splits", "black bear", "equal sign", "after bo
     var button2 = document.querySelector(".button2")
     var button3 = document.querySelector(".button3")
  ///////////////////////////////////////////////////////////////////////   
-//Array of questions.
+//Array of questions to be answered.
     var questions = ["What is the proper tag for an unorganized list in html?", "What is the proper tag to use for text?","What is a method that splits an array into a string","Question, what kind of bear is best?","What symbole gives a variable a value?","When using bootstrap, where should you link your css file?","What is a cool language?","What symbole links an ID to a css page? "]
-// Index position for questions and answers to iterate through.
+// Index position for questions and answers to start from.
     var questionIndex = 0
     var answersIndex = 0
-    var correctIndex = 0
-    
-    ///text that is displayed on button is text in the past. click in the futer.
     
 
-         
-// Event listener attached to html buttons.
+    
+     
+//// Event listener attached to start button. Starts clock and displays question w/ answeres for first round.
 var startLis = document.querySelector(".start")
 startLis.addEventListener("click", function(){
-    displayQuestion.textContent = questions[questionIndex]  
-    button0.textContent = answers[questionIndex][0]
-    button1.textContent = answers[questionIndex][1]
-    button2.textContent = answers[questionIndex][2]
-    button3.textContent = answers[questionIndex][3]
-    
+    ////Hides start button once clicked////
     startLis.setAttribute("style", "display: none")
+    ///Displayes first question and answer to start round///
+    displayQuestion.textContent = questions[questionIndex]  
+    button0.textContent = answers[answersIndex][0]
+    button1.textContent = answers[answersIndex][1]
+    button2.textContent = answers[answersIndex][2]
+    button3.textContent = answers[answersIndex][3]
+    
+    ///Displayes setInterval and controls///
     var time = document.querySelector(".time")
     var seconds = 90
-
     var countDown = setInterval(function(){
     time.textContent = seconds
     seconds --
-    
     if (seconds <= 0){
        clearInterval(countDown)}
     }, 1000)
     
-    
-    
-//Events and buttons below.
-//////////////////////////////////////////
-var evenLis = document.querySelector("#buttons")
-evenLis.addEventListener("click", function(event){
-    if (event.target.matches("button")){
-    var arr = answers[answersIndex]
 
-    questionIndex ++;  answersIndex ++; 
-    displayQuestion.textContent = questions[questionIndex]  
-    
-    
-    button0.textContent = arr[0]
-    button1.textContent = arr[1]
-    button2.textContent = arr[2]
-    button3.textContent = arr[3]
+    ///EVENT LISTENER AND EVENT LISTENER TARGET.
+    var evenLis = document.querySelector("#buttons")
+    evenLis.addEventListener("click", function(event){
+        
+        
+        
+    if (event.target.matches("button")){
+         
+        questionIndex ++; 
+        var arr = answers[answersIndex]
+        answersIndex ++;
+        displayQuestion.textContent = questions[questionIndex]  
+        
+        button0.textContent = arr[0]
+        button1.textContent = arr[1]
+        button2.textContent = arr[2]
+        button3.textContent = arr[3]
+        //TODO: move /// IF TARGET DOES NOT MATCH ANY CORRECT ANSWERS THEN - 10 SECONDS
+        console.log (event.target.textContent)
+        if (correctAnswers.indexOf(event.target.textContent) === -1){
+            console.log("miss"); seconds = seconds - 10;
+            }
+        
           
     
     
-    //////////////////////////////
 
     /////IF COMPLETED SCORE WITH SUBMIT BAR//////////////////////////
     if (questionIndex >= 8 || seconds <= 0){
@@ -139,13 +139,8 @@ evenLis.addEventListener("click", function(event){
         
 
     }
-    var current = correctAnswers[correctIndex]
-    correctIndex ++
-    //console.log(current)
-    console.log (event.target.textContent)
-    if (event.target.textContent !== current){
-    console.log("miss"); seconds = seconds - 10;
-    }
+    
+    
     }
 })
 
