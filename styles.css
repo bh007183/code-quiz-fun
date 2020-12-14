@@ -8,16 +8,14 @@
     
     
 }
-#question{
+.question{
     background-color: orange;
     height: 30%;
 }
 #list{
     background-color: olivedrab;
 }
-.right{
-    
-}
+
 button {
     width:  80%;
     background-color: orchid;
