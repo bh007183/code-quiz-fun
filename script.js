@@ -121,8 +121,10 @@ startLis.addEventListener("click", function(){
             var highScore = document.createElement("h2")
             highScore.textContent = "High Scores:"
             document.body.querySelector("#here").appendChild(highScore)
+            
             var number = localStorage.getItem("Seconds")
             var person = localStorage.getItem("Initials")
+            
             
             var scoreList = document.createElement("li")
             scoreList.textContent = person +"_______" +number
@@ -133,7 +135,9 @@ startLis.addEventListener("click", function(){
             resetB.setAttribute("style", "margin-left: 12%")
             document.body.querySelector("#reset").appendChild(resetB)
     
-            resetB.addEventListener("click", function(){console.log(main())  })
+            resetB.addEventListener("click", function(){
+                document.location.reload()
+            })
                 
         })
     
@@ -146,6 +150,8 @@ startLis.addEventListener("click", function(){
 }    
 
        
+
+
 
 
 
