@@ -1,28 +1,31 @@
-////////////////////////Function that starts app/////////////////////////////
 
+////Function for removing children/////
 function removeChildren(selector, child){
     document.body.querySelector(selector).removeChild(child)
     }
     
+    var pull = []
+    var savedScore = document.querySelector(".savedScore")
+    savedScore.textContent
+          
         
-        
- main()  
+
    
-function main(){    
+
 // Array within Array from which the buttons populate their answers.
 var answers = [
-    ["li", "ul", "div", "section"], 
-    ["main", "button", "body", "p"],
-    ["map", "Every", "splits","gush"],
-    ["black bear", "beats", "battlestar galactica", "mose"],
-    ["question mark", "hashtag", "exclamation mark", "equal sign"],
-    ["in div", "before html", "in script.js", "after bootstrap link"],
-    ["html", "css", "java script", "python"],
-    ["percent", "dolorsign", "hashtag", "period"],[1,1,1,1]]
+    ["<li>", "<ul>", "<div>", "<section>"], 
+    ["<main>", "<button>", "<body>", "<p>"],
+    ["map", "Every", "Split","gush"],
+    ["Black Bear", "Beats", "Battlestar Galactica", "Mose"],
+    ["Question Mark", "Hashtag", "Exclamation Mark", "Equal Sign"],
+    ["In <div>", "Before html", "In script.js", "After Bootstrap Link"],
+    ["HTML", "CSS", "Java Script", "Python"],
+    ["Percent", "Dolorsign", "Hashtag", "Period"],[1,1,1,1]]
     
 //////////////////////////////////////////////////////////////////////////
 //Array of correct Answers to match against answer button Eventlistener.textcontent.
-var correctAnswers = ["ul", "p", "splits", "black bear", "equal sign", "after bootstrap link", "java script", "hashtag",]
+var correctAnswers = ["<ul>", "<p>", "Split", "Black Bear", "Equal Sign", "After Bootstrap Link", "Java Script", "Hashtag",]
  ////////////////////////////////////////////////////////////////////////   
 // Linking buttons and question to html.
     var displayQuestion = document.querySelector(".question")
@@ -110,10 +113,17 @@ startLis.addEventListener("click", function(){
 //////////SCORE AND INITIALS SUBMITION TO LOCAL STORAGE//////////////
         
         submitB.addEventListener("click", function(){
-            localStorage.setItem("Seconds", seconds.toString())
+            
+            
+            
+
+            
+            localStorage.setItem("Seconds", seconds)
             localStorage.setItem("Initials", initials.value)
-            initials.value = ""
-          
+
+            var number = localStorage.getItem("Seconds")
+            var person = localStorage.getItem("Initials")
+            
             removeChildren("#here", score)
             removeChildren("#here", initials)
             removeChildren("#here", submitB)
@@ -121,9 +131,6 @@ startLis.addEventListener("click", function(){
             var highScore = document.createElement("h2")
             highScore.textContent = "High Scores:"
             document.body.querySelector("#here").appendChild(highScore)
-            
-            var number = localStorage.getItem("Seconds")
-            var person = localStorage.getItem("Initials")
             
             
             var scoreList = document.createElement("li")
@@ -134,9 +141,12 @@ startLis.addEventListener("click", function(){
             resetB.textContent = "Reset"
             resetB.setAttribute("style", "margin-left: 12%")
             document.body.querySelector("#reset").appendChild(resetB)
+            //////
+
     
             resetB.addEventListener("click", function(){
                 document.location.reload()
+                
             })
                 
         })
@@ -147,9 +157,9 @@ startLis.addEventListener("click", function(){
 })
 
 })
-}    
 
-       
+
+
 
 
 
