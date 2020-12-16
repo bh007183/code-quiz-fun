@@ -33,7 +33,15 @@ var correctAnswers = ["<ul>", "<p>", "Split", "Black Bear", "Equal Sign", "After
     var button1 = document.querySelector(".button1")
     var button2 = document.querySelector(".button2")
     var button3 = document.querySelector(".button3")
- ///////////////////////////////////////////////////////////////////////   
+ /////////////////////////////////////////////////////////////////////// 
+ //Local Storage Get Item
+   var localVal = JSON.parse(localStorage.getItem("userScore")) || []  
+   var sting = JSON.stringify(localVal)
+   for (var i = localVal.length -1; i >= 0; i--){
+    var scoreList = document.createElement("li")
+    scoreList.textContent = JSON.stringify(localVal[i])
+    document.querySelector(".savedScore").appendChild(scoreList)
+}   
 //Array of questions to be answered.
     var questions = ["What is the proper tag for an unorganized list in html?", "What is the proper tag to use for text?","What is a method that splits an array into a string","Question, what kind of bear is best?","What symbole gives a variable a value?","When using bootstrap, where should you link your css file?","What is a cool language?","What symbole links an ID to a css page? "]
 // Index position for questions and answers to start from.
@@ -105,7 +113,7 @@ startLis.addEventListener("click", function(){
         var submitB = document.createElement("button")
         submitB.textContent="Submit"
         submitB.setAttribute("style", "width : 20%")
-        document.body.querySelector("#here").appendChild(submitB)
+        document.querySelector("#here").appendChild(submitB)
         ////////
         evenLis.setAttribute("style", "display: none")
         time.setAttribute("style", "display: none")
@@ -114,15 +122,19 @@ startLis.addEventListener("click", function(){
         
         submitB.addEventListener("click", function(){
             
+            var combined = {
+                "seconds" : seconds,
+                "initials" : initials.value
+            }
             
+             localVal.push(combined)
             
+            localStorage.setItem("userScore", JSON.stringify(localVal))
+           
 
-            
-            localStorage.setItem("Seconds", seconds)
-            localStorage.setItem("Initials", initials.value)
 
-            var number = localStorage.getItem("Seconds")
-            var person = localStorage.getItem("Initials")
+            //var number = localStorage.getItem("Seconds")
+            //var person = localStorage.getItem("Initials")
             
             removeChildren("#here", score)
             removeChildren("#here", initials)
@@ -130,17 +142,22 @@ startLis.addEventListener("click", function(){
             
             var highScore = document.createElement("h2")
             highScore.textContent = "High Scores:"
-            document.body.querySelector("#here").appendChild(highScore)
-            
+            document.querySelector("#here").appendChild(highScore)
+
             
             var scoreList = document.createElement("li")
-            scoreList.textContent = person +"_______" +number
-            document.body.querySelector("#here").appendChild(scoreList)
+            scoreList.textContent = initials.value +"       " +seconds
+            document.querySelector("#here").appendChild(scoreList)
+            
+
+            
+         
+            
             ///////////////
             var resetB = document.createElement("button")
             resetB.textContent = "Reset"
             resetB.setAttribute("style", "margin-left: 12%")
-            document.body.querySelector("#reset").appendChild(resetB)
+            document.querySelector("#reset").appendChild(resetB)
             //////
 
     
